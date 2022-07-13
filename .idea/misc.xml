@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1435" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable/about.xml" value="0.1435" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1435" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/a.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_dashboard.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_chat.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_create.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_edit.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_info.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_main.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_maps.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_group_chats.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_groupchat_right.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_groupchats_list.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_participant_add.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/test.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/map_options.xml" value="0.25" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/menu.xml" value="0.22314814814814815" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

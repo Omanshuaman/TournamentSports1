@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "319310297783",
+    "firebase_url": "https://adminuser-d6f95-default-rtdb.firebaseio.com",
+    "project_id": "adminuser-d6f95",
+    "storage_bucket": "adminuser-d6f95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319310297783:android:843e0a17f14ef8aca1ab32",
+        "android_client_info": {
+          "package_name": "com.example.adminuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319310297783-tl64olo0b7rcf710hk7cbhls60djmktq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adminuser",
+            "certificate_hash": "c7ac879b312baacae8714dd127001ef11d731c49"
+          }
+        },
+        {
+          "client_id": "319310297783-pi682lf0pgvgr28rcv45dlr6pima6oa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQFyDVezCU5J2fqyq0HL7tvgWkfe2_PVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319310297783-pi682lf0pgvgr28rcv45dlr6pima6oa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319310297783:android:6428a4fd7f43338fa1ab32",
+        "android_client_info": {
+          "package_name": "com.omanshuaman.tournamentsports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319310297783-qcjpivhjlegc4vhdrp1q157klcodshji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omanshuaman.tournamentsports",
+            "certificate_hash": "c7ac879b312baacae8714dd127001ef11d731c49"
+          }
+        },
+        {
+          "client_id": "319310297783-pi682lf0pgvgr28rcv45dlr6pima6oa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQFyDVezCU5J2fqyq0HL7tvgWkfe2_PVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319310297783-pi682lf0pgvgr28rcv45dlr6pima6oa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
