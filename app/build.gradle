@@ -2,7 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'}
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+}
 
 android {
     compileSdk 32
@@ -60,7 +61,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.2.0')
     implementation 'com.adevinta.android:leku:9.1.4'
 
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.google.android.libraries.places:places:2.6.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'

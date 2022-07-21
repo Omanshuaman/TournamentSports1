@@ -1,19 +1,14 @@
-
 package com.omanshuaman.tournamentsports.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.omanshuaman.tournamentsports.GroupChatActivity
 import com.omanshuaman.tournamentsports.R
-import com.example.adminuser.models.Upload
-import com.google.firebase.database.FirebaseDatabase
+import com.omanshuaman.tournamentsports.models.Upload
 import com.omanshuaman.tournamentsports.RecyclerActivity
 
 
@@ -36,13 +31,15 @@ class AdapterCard(context: Context, uploads: List<Upload?>?) :
         //inflate layout row_post.xml
         val view: View = LayoutInflater.from(mContext).inflate(R.layout.place_layout, parent, false)
 
+        view.layoutParams = ViewGroup.LayoutParams((parent.width * 0.90).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
+
         return MyHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         //get data
 
-        val model = mUploads.get(position)
+        val model = mUploads[position]
         val id = model?.Id
 
         val name: String? = mUploads[position]?.name
@@ -52,7 +49,6 @@ class AdapterCard(context: Context, uploads: List<Upload?>?) :
 
         //handle group click
         holder.itemView.setOnClickListener {
-            //open group chat
             //open group chat
             val intent = Intent(mContext, RecyclerActivity::class.java)
             intent.putExtra("Id", id)

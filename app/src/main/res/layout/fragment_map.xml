@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".MapFragment">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
@@ -23,16 +23,14 @@
         android:padding="8dp"
         android:text="Organize"
         android:textColor="#ffffff" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/placesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
-        android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         tools:listitem="@layout/place_layout" />
 
 </RelativeLayout>

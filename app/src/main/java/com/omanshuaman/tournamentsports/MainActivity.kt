@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.*
@@ -15,8 +13,8 @@ import com.adevinta.leku.LATITUDE
 import com.adevinta.leku.LONGITUDE
 import com.adevinta.leku.LocationPickerActivity
 import com.adevinta.leku.locale.SearchZoneRect
-import com.example.adminuser.models.LocationModel
-import com.example.adminuser.models.Upload
+import com.omanshuaman.tournamentsports.models.LocationModel
+import com.omanshuaman.tournamentsports.models.Upload
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase

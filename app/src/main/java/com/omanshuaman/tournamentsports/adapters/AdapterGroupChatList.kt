@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.omanshuaman.tournamentsports.GroupChatActivity
-import com.example.adminuser.models.ModelGroupChatList
+import com.omanshuaman.tournamentsports.models.ModelGroupChatList
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

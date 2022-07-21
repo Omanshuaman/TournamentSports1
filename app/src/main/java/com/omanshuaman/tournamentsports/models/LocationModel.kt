@@ -1,4 +1,4 @@
-package com.example.adminuser.models
+package com.omanshuaman.tournamentsports.models
 
 import com.google.android.gms.maps.model.LatLng
 

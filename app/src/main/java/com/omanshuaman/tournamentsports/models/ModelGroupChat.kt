@@ -1,4 +1,4 @@
-package com.example.adminuser.models
+package com.omanshuaman.tournamentsports.models
 
 class ModelGroupChat {
     var message: String? = null

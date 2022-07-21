@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.omanshuaman.tournamentsports.R
-import com.example.adminuser.models.TrailModel
+import com.omanshuaman.tournamentsports.models.TrailModel
 import com.squareup.picasso.Picasso
 
 

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import  com.omanshuaman.tournamentsports.R
-import com.example.adminuser.models.ModelGroupChat
+import com.omanshuaman.tournamentsports.models.ModelGroupChat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

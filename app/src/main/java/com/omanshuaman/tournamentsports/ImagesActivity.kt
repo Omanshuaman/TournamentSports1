@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adminuser.models.Upload
+import com.omanshuaman.tournamentsports.models.Upload
 import com.google.firebase.database.*
 import com.omanshuaman.tournamentsports.adapters.ImageAdapter
 

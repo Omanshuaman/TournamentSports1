@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adminuser.models.ModelUser
+import com.omanshuaman.tournamentsports.models.ModelUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.omanshuaman.tournamentsports.adapters.AdapterParticipantAdd

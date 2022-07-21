@@ -5,7 +5,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adminuser.models.Upload
+import com.omanshuaman.tournamentsports.models.Upload
 import com.omanshuaman.tournamentsports.R
 import com.squareup.picasso.Picasso
 

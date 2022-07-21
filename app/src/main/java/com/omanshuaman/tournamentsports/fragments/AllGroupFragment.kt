@@ -8,7 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adminuser.models.AllModelGroupChatList
+import com.omanshuaman.tournamentsports.models.AllModelGroupChatList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.omanshuaman.tournamentsports.GroupCreateActivity

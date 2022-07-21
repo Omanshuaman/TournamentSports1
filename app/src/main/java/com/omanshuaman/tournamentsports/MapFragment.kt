@@ -1,4 +1,5 @@
 package com.omanshuaman.tournamentsports
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.adminuser.models.Upload
+import androidx.recyclerview.widget.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.firebase.database.*
 import com.omanshuaman.tournamentsports.adapters.AdapterCard
+import com.omanshuaman.tournamentsports.models.Upload
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -53,8 +53,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun marker() {
-        //path of all posts
-        //init post list
+        val helper: SnapHelper = LinearSnapHelper()
+
         markerList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Just Photos")
         //get all data from this ref
@@ -66,11 +66,24 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     if (modelList != null) {
                         markerList!!.add(modelList)
                     }
-
                     //adapter
                     adapterCard = activity?.let { AdapterCard(it, markerList) }
                     //set adapter to recyclerview
                     recyclerView!!.adapter = adapterCard
+
+//                    recyclerView!!.addItemDecoration(object :
+//                        DividerItemDecoration(context, LinearLayoutManager.VERTICAL) {
+//                        override fun onDraw(
+//                            c: Canvas,
+//                            parent: RecyclerView,
+//                            state: RecyclerView.State
+//                        ) {
+//                        }
+//                    })
+
+                    helper.attachToRecyclerView(recyclerView)
+//                    snapHelper.attachToRecyclerView(recyclerView)
+
                 }
             }
 
@@ -96,8 +109,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 for (child in dataSnapshot.children) {
-                    val long = dataSnapshot.child("LatLng").child("longitude").value.toString().toDouble()
-                    val lat = dataSnapshot.child("LatLng").child("latitude").value.toString().toDouble()
+                    val long =
+                        dataSnapshot.child("LatLng").child("longitude").value.toString().toDouble()
+                    val lat =
+                        dataSnapshot.child("LatLng").child("latitude").value.toString().toDouble()
 
                     Log.d("LONG", "onChildAdded: " + long.toString().toDouble())
                     val location = LatLng(lat, long)
@@ -130,6 +145,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         })
 
         mMap.setOnMarkerClickListener { marker ->
+            marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
             val markerPosition = marker.position
             var selectedMarker = 0
@@ -146,6 +162,43 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             // marker.showInfoWindow()
             return@setOnMarkerClickListener false
         }
+
+
+        recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                val firstChild: View = recyclerView.getChildAt(0)
+//                val topHolder =
+//                    recyclerView.getChildViewHolder(firstChild)
+//                Log.d("TAG9", "onScrolled: " + topHolder.absoluteAdapterPosition)
+
+                val lastChild: View =
+                    recyclerView.getChildAt(recyclerView.childCount - 1)
+                val bottomHolder =
+                    recyclerView.getChildViewHolder(lastChild)
+                Log.d("TAG10", "onScrolled: $bottomHolder")
+
+
+                for (i in 0 until mMarkerArray.size) {
+
+                    Log.d("56", "onScrolled: $i")
+                    if (i == bottomHolder.absoluteAdapterPosition
+                    ) {
+
+                        val cameraPosition = CameraPosition.Builder().target(
+                            LatLng(
+                                mMarkerArray[i]!!.position.latitude,
+                                mMarkerArray[i]!!.position.longitude,
+                            )
+                        ).zoom(12f).build()
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+
+                    }
+                }
+
+            }
+
+        })
 
     }
 
