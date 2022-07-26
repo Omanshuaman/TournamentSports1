@@ -31,6 +31,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/place_layout" />
 
 </RelativeLayout>

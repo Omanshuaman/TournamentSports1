@@ -13,4 +13,28 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="entire_flat_y">Entire Flat. Puerto de la cruz lrmLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy</string>
     <string name="_1_bed_1_bedroom">1 bed 1 bedroom</string>
+
+
+    <string name="register_text">Let\'s start with creating your account</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="continue_text">Continue</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_sign_out">Sign Out</string>
+    <string name="permission_require">Permission require</string>
+    <string name="drivers_not_found">Drivers not found</string>
+    <string name="key_not_found">Key driver not found</string>
+    <string name="title_activity_driver_home">DriverHomeActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_exit">Sign Out</string>
+    <string name="msg_token_fmt" />
 </resources>

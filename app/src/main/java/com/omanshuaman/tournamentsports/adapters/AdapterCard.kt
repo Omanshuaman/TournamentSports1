@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.omanshuaman.tournamentsports.R
-import com.omanshuaman.tournamentsports.models.Upload
 import com.omanshuaman.tournamentsports.RecyclerActivity
+import com.omanshuaman.tournamentsports.models.Upload
 
 
 class AdapterCard(context: Context, uploads: List<Upload?>?) :
@@ -31,7 +31,8 @@ class AdapterCard(context: Context, uploads: List<Upload?>?) :
         //inflate layout row_post.xml
         val view: View = LayoutInflater.from(mContext).inflate(R.layout.place_layout, parent, false)
 
-        view.layoutParams = ViewGroup.LayoutParams((parent.width * 0.90).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
+   view.layoutParams = ViewGroup.LayoutParams((parent.width * 0.90).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
+
 
         return MyHolder(view)
     }

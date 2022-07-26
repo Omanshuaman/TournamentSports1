@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable-hdpi/ic_baseline_directions_car_24.xml" value="0.1" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable-hdpi/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1435" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable/about.xml" value="0.1435" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable/bor.xml" value="0.12" />
@@ -10,6 +12,7 @@
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1435" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/a.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_dashboard.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_driver_home.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_chat.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_create.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_group_edit.xml" value="0.19067028985507245" />
@@ -22,21 +25,28 @@
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_recycler.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/activity_sign_in.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/allrow_groupchats_list.xml" value="0.2151268115942029" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/app_bar_driver_home.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/content_driver_home.xml" value="0.1109375" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/divider.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_group_chats.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_home.xml" value="0.1109375" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_map.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_profile.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_trail.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/fragment_users.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/image_item.xml" value="0.2151268115942029" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/nav_header_driver_home.xml" value="0.264" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/place_layout.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/recycler_list_item.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_groupchat_right.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_groupchats_list.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/row_participant_add.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/layout/test.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/activity_main_drawer.xml" value="0.264" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/driver_home.xml" value="0.2" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/map_options.xml" value="0.25" />
         <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/menu.xml" value="0.22314814814814815" />
+        <entry key="..\:/Users/omans/AndroidStudioProjects/TournamentSports/app/src/main/res/menu/menu_nav.xml" value="0.25" />
       </map>
     </option>
   </component>

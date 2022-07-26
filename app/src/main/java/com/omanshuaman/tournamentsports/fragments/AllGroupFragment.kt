@@ -25,7 +25,7 @@ class AllGroupFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_all_group, container, false)
@@ -36,7 +36,7 @@ class AllGroupFragment : Fragment() {
     }
 
     private fun loadGroupChatsList() {
-        groupChatLists = ArrayList<AllModelGroupChatList?>()
+        groupChatLists = ArrayList()
         val reference = FirebaseDatabase.getInstance().getReference("Groups")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -97,7 +97,7 @@ class AllGroupFragment : Fragment() {
     private fun checkUserStatus() {
         val user = firebaseAuth!!.currentUser
         if (user == null) {
-            //user not signed in, go to main acitivity
+            //user not signed in, go to main activity
             startActivity(Intent(activity, MainActivity::class.java))
             requireActivity().finish()
         }
