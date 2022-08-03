@@ -6,46 +6,37 @@
     android:layout_height="match_parent"
     android:background="#eee"
     android:padding="20dp"
-    tools:context=".GroupCreateActivity">
+    tools:context=".ParticipantInfoActivity">
 
-    <!--ImageView: Group Icon image (Pick/Display)-->
-    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-        android:id="@+id/groupIconIv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_group_primary" />
-
-    <!--EditText: Group Title-->
     <EditText
-        android:id="@+id/entry_fee"
+        android:id="@+id/your_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/groupIconIv"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
-        android:hint="Group Title"
+        android:hint="Your Name"
         android:padding="10dp"
         android:textColor="@color/black" />
 
-    <!--EditText: Group Group Description-->
     <EditText
-        android:id="@+id/prize_money"
+        android:id="@+id/phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/entry_fee"
+        android:layout_below="@id/your_name"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
         android:gravity="top"
-        android:hint="Group Description"
+        android:hint="Phone Number"
         android:inputType="textMultiLine|textCapSentences"
         android:minHeight="100dp"
         android:padding="10dp"
         android:textColor="@color/black" />
 
-    <!--FAB: Create Group-->
+
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/createGroupBtn"
+        android:id="@+id/upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

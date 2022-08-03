@@ -12,14 +12,12 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.omanshuaman.tournamentsports.models.ModelGroupChat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.omanshuaman.tournamentsports.adapters.AdapterGroupChat
+import com.omanshuaman.tournamentsports.models.ModelGroupChat
 import com.squareup.picasso.Picasso
 
 
@@ -64,7 +63,7 @@ class GroupChatActivity : AppCompatActivity() {
         sendBtn = findViewById(R.id.sendBtn)
         chatRv = findViewById(R.id.chatRv)
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar)
 
         //get id of the group
         val intent = intent
@@ -90,9 +89,9 @@ class GroupChatActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         loadGroupInfo()
         loadGroupMessages()
-        loadMyGroupRole();
+        loadMyGroupRole()
 
-        sendBtn!!.setOnClickListener(View.OnClickListener {
+        sendBtn!!.setOnClickListener {
             //input data
             val message = messageEt?.text.toString().trim { it <= ' ' }
             //validate
@@ -107,7 +106,7 @@ class GroupChatActivity : AppCompatActivity() {
                 //send message
                 sendMessage(message)
             }
-        })
+        }
         attachBtn!!.setOnClickListener { //pick image from camera/gallery
             showImageImportDialog()
         }
@@ -222,7 +221,7 @@ class GroupChatActivity : AppCompatActivity() {
                     hashMap["type"] = "" + "image" //text/image/file
 
                     //add in db
-                    val ref = FirebaseDatabase.getInstance().getReference("Groups")
+                    val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
                     ref.child(groupId!!).child("Messages").child(timestamp)
                         .setValue(hashMap)
                         .addOnSuccessListener { //message sent
@@ -249,7 +248,7 @@ class GroupChatActivity : AppCompatActivity() {
     }
 
     private fun loadMyGroupRole() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Participants")
             .orderByChild("uid").equalTo(firebaseAuth!!.uid)
             .addValueEventListener(object : ValueEventListener {
@@ -268,7 +267,7 @@ class GroupChatActivity : AppCompatActivity() {
     private fun loadGroupMessages() {
         //init list
         groupChatList = ArrayList()
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Messages")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -300,7 +299,7 @@ class GroupChatActivity : AppCompatActivity() {
         hashMap["type"] = "" + "text" //text/image/file
 
         //add in db
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Messages").child(timestamp)
             .setValue(hashMap)
             .addOnSuccessListener { //message sent
@@ -313,7 +312,7 @@ class GroupChatActivity : AppCompatActivity() {
     }
 
     private fun loadGroupInfo() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.orderByChild("groupId").equalTo(groupId)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -339,23 +338,18 @@ class GroupChatActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        menu.findItem(R.id.action_settings).setVisible(false)
-        menu.findItem(R.id.action_create_group).setVisible(false)
-        menu.findItem(R.id.action_add_post).setVisible(false)
-        menu.findItem(R.id.action_logout).setVisible(false)
-        menu.findItem(R.id.action_search).setVisible(false)
+        menu.findItem(R.id.action_settings).isVisible = false
+        menu.findItem(R.id.action_create_group).isVisible = false
+        menu.findItem(R.id.action_add_post).isVisible = false
+        menu.findItem(R.id.action_logout).isVisible = false
+        menu.findItem(R.id.action_search).isVisible = false
 
-        if (myGroupRole == "creator" || myGroupRole == "admin") {
-            //im admin/creator, show add person option
-            menu.findItem(R.id.action_add_participant).setVisible(true)
-        } else {
-            menu.findItem(R.id.action_add_participant).setVisible(false)
-        }
+        menu.findItem(R.id.action_add_participant).isVisible = myGroupRole == "creator" || myGroupRole == "admin"
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id: Int = item.getItemId()
+        val id: Int = item.itemId
         if (id == R.id.action_add_participant) {
             val intent = Intent(this, GroupParticipantAddActivity::class.java)
             intent.putExtra("groupId", groupId)
@@ -363,11 +357,12 @@ class GroupChatActivity : AppCompatActivity() {
         }
         else if (id == R.id.action_groupinfo){
             val intent = Intent(this, GroupInfoActivity::class.java)
-            intent.putExtra("groupId", groupId);
-            startActivity(intent);
+            intent.putExtra("groupId", groupId)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
@@ -390,7 +385,7 @@ class GroupChatActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            CAMERA_REQUEST_CODE -> if (grantResults.size > 0) {
+            CAMERA_REQUEST_CODE -> if (grantResults.isNotEmpty()) {
                 val cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (cameraAccepted && writeStorageAccepted) {
@@ -403,7 +398,7 @@ class GroupChatActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-            STORAGE_REQUEST_CODE -> if (grantResults.size > 0) {
+            STORAGE_REQUEST_CODE -> if (grantResults.isNotEmpty()) {
                 val writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 if (writeStorageAccepted) {
                     pickGallery()

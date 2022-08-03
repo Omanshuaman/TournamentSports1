@@ -75,7 +75,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val helper: SnapHelper = LinearSnapHelper()
 
         markerList = ArrayList()
-        val ref = FirebaseDatabase.getInstance().getReference("Just Photos")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Just Photos")
         //get all data from this ref
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -104,7 +104,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val databaseReference = FirebaseDatabase.getInstance().reference.child("Location")
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Tournament").child("Location")
 
 
         mMap = googleMap
@@ -219,6 +219,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         })
         enableMyLocation()
+//        mMap.uiSettings.isMapToolbarEnabled = false;
+//        mMap.uiSettings.isZoomControlsEnabled = false;
 
     }
 
@@ -251,6 +253,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     //     Callback for the result from requesting permissions.
 //     This method is invoked for every call on requestPermissions(android.app.Activity, String[],
     // int).
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

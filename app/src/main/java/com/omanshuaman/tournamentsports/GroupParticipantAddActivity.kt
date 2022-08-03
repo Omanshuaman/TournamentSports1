@@ -75,8 +75,8 @@ class GroupParticipantAddActivity : AppCompatActivity() {
         }
 
     private fun loadGroupInfo() {
-        val ref1 = FirebaseDatabase.getInstance().getReference("Groups")
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref1 = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.orderByChild("groupId").equalTo(groupId)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

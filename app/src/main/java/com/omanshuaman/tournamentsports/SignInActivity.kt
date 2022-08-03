@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.omanshuaman.tournamentsports.models.ModelUser
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import com.omanshuaman.tournamentsports.databinding.ActivitySignInBinding
+import com.omanshuaman.tournamentsports.models.ModelUser
 
 
 class SignInActivity : AppCompatActivity() {
@@ -26,7 +26,6 @@ class SignInActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var firebaseDatabase: FirebaseDatabase? = null
     private var mGoogleSignInClient: GoogleSignInClient? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +94,7 @@ class SignInActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

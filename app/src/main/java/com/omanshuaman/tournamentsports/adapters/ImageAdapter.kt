@@ -22,7 +22,7 @@ class ImageAdapter(context: Context, uploads: List<Upload?>?) :
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val uploadCurrent = mUploads[position]
-        holder.textViewName.text = uploadCurrent?.name
+        holder.textViewName.text = uploadCurrent?.tournamentName
         Picasso.get()
             .load(uploadCurrent?.imageUrl)
             .fit()

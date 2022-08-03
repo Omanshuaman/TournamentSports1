@@ -95,6 +95,7 @@ class TrailFragment : Fragment() {
     }
 
     /*inflate options menu*/
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         //inflating menu
         inflater.inflate(R.menu.menu, menu)
@@ -107,6 +108,7 @@ class TrailFragment : Fragment() {
     }
 
     /*handle menu item clicks*/
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //get item id
         val id: Int = item.itemId

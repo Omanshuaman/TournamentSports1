@@ -17,7 +17,7 @@
 
     <!--EditText: Group Title-->
     <EditText
-        android:id="@+id/groupTitleEt"
+        android:id="@+id/entry_fee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/groupIconIv"
@@ -28,10 +28,10 @@
 
     <!--EditText: Group Group Description-->
     <EditText
-        android:id="@+id/groupDescriptionEt"
+        android:id="@+id/prize_money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/groupTitleEt"
+        android:layout_below="@id/entry_fee"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
         android:gravity="top"

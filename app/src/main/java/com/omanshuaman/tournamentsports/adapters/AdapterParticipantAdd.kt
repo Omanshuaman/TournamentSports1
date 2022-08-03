@@ -58,7 +58,7 @@ class AdapterParticipantAdd(
             /*Check if user already added or not
                      * If added: show remove-participant/make-admin/remove-admin option (Admin will not able to change role of creator)
                      * If not added, show add participant option*/
-            val ref = FirebaseDatabase.getInstance().getReference("Groups")
+            val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
             ref.child(groupId).child("Participants").child(uid!!)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -175,7 +175,7 @@ class AdapterParticipantAdd(
         hashMap["role"] = "participant"
         hashMap["timestamp"] = "" + timestamp
         //add that user in Groups>groupId>Participants
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId).child("Participants").child(modelUser.uid!!).setValue(hashMap)
             .addOnSuccessListener { //added successfully
                 Toast.makeText(context, "Added successfully...", Toast.LENGTH_SHORT).show()
@@ -190,7 +190,7 @@ class AdapterParticipantAdd(
         val hashMap = HashMap<String, Any>()
         hashMap["role"] = "admin" //roles are: participant/admin/creator
         //update role in db
-        val reference = FirebaseDatabase.getInstance().getReference("Groups")
+        val reference = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         reference.child(groupId).child("Participants").child(modelUser.uid!!)
             .updateChildren(hashMap)
             .addOnSuccessListener { //made admin
@@ -203,7 +203,7 @@ class AdapterParticipantAdd(
 
     private fun removeParticipant(modelUser: ModelUser) {
         //remove participant from group
-        val reference = FirebaseDatabase.getInstance().getReference("Groups")
+        val reference = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         reference.child(groupId).child("Participants").child(modelUser.uid!!).removeValue()
             .addOnSuccessListener {
                 //removed successfully
@@ -218,7 +218,7 @@ class AdapterParticipantAdd(
         val hashMap = HashMap<String, Any>()
         hashMap["role"] = "participant" //roles are: participant/admin/creator
         //update role in db
-        val reference = FirebaseDatabase.getInstance().getReference("Groups")
+        val reference = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         reference.child(groupId).child("Participants").child(modelUser.uid!!)
             .updateChildren(hashMap)
             .addOnSuccessListener { //made admin
@@ -230,7 +230,7 @@ class AdapterParticipantAdd(
     }
 
     private fun checkIfAlreadyExists(modelUser: ModelUser, holder: HolderParticipantAdd) {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId).child("Participants").child(modelUser.uid!!)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

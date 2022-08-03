@@ -107,7 +107,7 @@ class GroupInfoActivity : AppCompatActivity() {
     }
 
     private fun leaveGroup() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Participants").child(firebaseAuth!!.uid!!)
             .removeValue()
             .addOnSuccessListener { //group left successfully...
@@ -126,7 +126,7 @@ class GroupInfoActivity : AppCompatActivity() {
     }
 
     private fun deleteGroup() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!)
             .removeValue()
             .addOnSuccessListener { //group deleted successfully...
@@ -145,7 +145,7 @@ class GroupInfoActivity : AppCompatActivity() {
     }
 
     private fun loadGroupInfo() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.orderByChild("groupId").equalTo(groupId)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -194,7 +194,7 @@ class GroupInfoActivity : AppCompatActivity() {
     }
 
     private fun loadMyGroupRole() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Participants").orderByChild("uid")
             .equalTo(firebaseAuth!!.uid)
             .addValueEventListener(object : ValueEventListener {
@@ -225,7 +225,7 @@ class GroupInfoActivity : AppCompatActivity() {
 
     private fun loadParticipants() {
         userList = ArrayList()
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.child(groupId!!).child("Participants")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

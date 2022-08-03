@@ -37,7 +37,7 @@ class GroupChatsFragment : Fragment() {
 
     private fun loadGroupChatsList() {
         groupChatLists = ArrayList()
-        val reference = FirebaseDatabase.getInstance().getReference("Groups")
+        val reference = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 groupChatLists!!.clear()
@@ -60,7 +60,7 @@ class GroupChatsFragment : Fragment() {
 
     private fun searchGroupChatsList(query: String) {
         groupChatLists = ArrayList()
-        val reference = FirebaseDatabase.getInstance().getReference("Groups")
+        val reference = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 groupChatLists!!.clear()
@@ -97,6 +97,7 @@ class GroupChatsFragment : Fragment() {
     }
 
     /*inflate options menu*/
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         //inflating menu
         inflater.inflate(R.menu.menu, menu)
@@ -143,6 +144,7 @@ class GroupChatsFragment : Fragment() {
     }
 
     /*handle menu item clicks*/
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //get item id
         val id = item.itemId

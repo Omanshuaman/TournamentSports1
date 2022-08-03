@@ -27,7 +27,7 @@ class ImagesActivity : AppCompatActivity() {
         mRecyclerView!!.layoutManager = LinearLayoutManager(this)
 
         mUploads = ArrayList()
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Just Photos")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Tournament").child("Just Photos")
         mDatabaseRef!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {

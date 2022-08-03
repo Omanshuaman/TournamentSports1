@@ -56,8 +56,8 @@ class GroupEditActivity : AppCompatActivity() {
 
         //init UI views
         groupIconIv = findViewById(R.id.groupIconIv)
-        groupTitleEt = findViewById(R.id.groupTitleEt)
-        groupDescriptionEt = findViewById(R.id.groupDescriptionEt)
+        groupTitleEt = findViewById(R.id.entry_fee)
+        groupDescriptionEt = findViewById(R.id.prize_money)
         updateGroupBtn = findViewById(R.id.updateGroupBtn)
         groupId = intent.getStringExtra("groupId")
         progressDialog = ProgressDialog(this)
@@ -95,7 +95,7 @@ class GroupEditActivity : AppCompatActivity() {
             val hashMap = HashMap<String, Any>()
             hashMap["groupTitle"] = groupTitle
             hashMap["groupDescription"] = groupDescription
-            val ref = FirebaseDatabase.getInstance().getReference("Groups")
+            val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
             ref.child(groupId!!).updateChildren(hashMap)
                 .addOnSuccessListener { //updated...
                     progressDialog!!.dismiss()
@@ -130,7 +130,7 @@ class GroupEditActivity : AppCompatActivity() {
                         hashMap["groupTitle"] = groupTitle
                         hashMap["groupDescription"] = groupDescription
                         hashMap["groupIcon"] = "" + p_downloadUri
-                        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+                        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
                         ref.child(groupId!!).updateChildren(hashMap)
                             .addOnSuccessListener { //updated...
                                 progressDialog!!.dismiss()
@@ -159,7 +159,7 @@ class GroupEditActivity : AppCompatActivity() {
     }
 
     private fun loadGroupInfo() {
-        val ref = FirebaseDatabase.getInstance().getReference("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
         ref.orderByChild("groupId").equalTo(groupId)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -314,6 +314,7 @@ class GroupEditActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         //handle image pick result
         if (resultCode == RESULT_OK) {
