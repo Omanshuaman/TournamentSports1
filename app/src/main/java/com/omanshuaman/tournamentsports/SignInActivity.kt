@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -100,16 +101,10 @@ class SignInActivity : AppCompatActivity() {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
-                Log.d("SignIn", "firebaseAuthWithGoogle:" + account.id)
-                firebaseAuthWithGoogle(account)
-            } catch (e: ApiException) {
+            val account = GoogleSignIn.getSignedInAccountFromIntent(data).result
 
-                // Google Sign In failed
-                Log.w("SignIn", "Google Sign In failed.", e)
-            }
+                firebaseAuthWithGoogle(account)
+
         }
     }
 
@@ -152,18 +147,10 @@ class SignInActivity : AppCompatActivity() {
                     finish()
                     //updateUI(user);
 
-
-//                    val user = mAuth!!.currentUser
-//                    val users = Users()
-//                    users.userId = user!!.uid
-//                    users.userName = user.displayName
-//                    users.profilePic = user.photoUrl.toString()
-//                    firebaseDatabase!!.reference.child("Users").child(user.uid).setValue(users)
-//                    val intent = Intent(this@SignInActivity, DashboardActivity::class.java)
-//                    startActivity(intent)
                     Toast.makeText(this@SignInActivity, "Sign in with Google", Toast.LENGTH_SHORT)
                         .show()
                 } else {
+                    Log.w("TAGmm", "signInWithCredential:failure", task.exception)
 
                     Toast.makeText(this@SignInActivity, "Sorry error auth", Toast.LENGTH_SHORT)
                         .show()
