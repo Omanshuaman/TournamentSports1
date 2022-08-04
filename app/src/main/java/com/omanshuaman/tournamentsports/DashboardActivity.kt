@@ -2,74 +2,60 @@ package com.omanshuaman.tournamentsports
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.Menu
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.omanshuaman.tournamentsports.databinding.ActivityDriverHomeBinding
 
 
-class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class DashboardActivity : AppCompatActivity() {
     //firebase auth
     var firebaseAuth: FirebaseAuth? = null
     private lateinit var binding: ActivityDriverHomeBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navController: NavController
+    var actionBar: ActionBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDriverHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        drawerLayout = findViewById(R.id.drawer_layout)
-
-        val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        drawerLayout = binding.drawerLayout
+        navView = findViewById(R.id.nav_view)
+        navController = findNavController(R.id.nav_host_fragment_content_driver_home)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home
+            ), drawerLayout
         )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+        init()
+       // getSupportActionBar()?.hide();
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                MapFragment()
-            ).commit()
-            navigationView.setCheckedItem(R.id.nav_home)
-        }
-    }
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
+
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-
-        when (item.itemId) {
-            R.id.nav_home -> supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                MapFragment()
-            ).commit()
-            R.id.group_chat -> supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                GroupChatsFragment()
-            ).commit()
-            R.id.nav_sign_out ->
-
+    private fun init() {
+        navView.setNavigationItemSelectedListener {
+            if (it.itemId == R.id.nav_sign_out) {
+                val builder = AlertDialog.Builder(this@DashboardActivity)
                 builder.setTitle("Sign out")
                     .setMessage("Do you really want to sign out?")
                     .setNegativeButton(
@@ -84,13 +70,42 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()
-                    }.show()
+                    }.setCancelable(false)
 
+                val dialog = builder.create()
+                dialog.setOnShowListener {
+                    // Fix Deprecated
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(
+                            ContextCompat.getColor(
+                                this@DashboardActivity,
+                                android.R.color.holo_red_dark
+                            )
+                        )
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(
+                            ContextCompat.getColor(
+                                this@DashboardActivity,
+                                android.R.color.holo_red_dark
+                            )
+                        )
+                }
+
+                dialog.show()
             }
+            true
+        }
 
+    }
 
-        drawerLayout . closeDrawer (GravityCompat.START)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.driver_home, menu)
         return true
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_driver_home)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 }

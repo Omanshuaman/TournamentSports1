@@ -1,10 +1,7 @@
 package com.omanshuaman.tournamentsports
 
 import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -19,40 +16,38 @@ import com.adevinta.leku.LONGITUDE
 import com.adevinta.leku.LocationPickerActivity
 import com.adevinta.leku.locale.SearchZoneRect
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.omanshuaman.tournamentsports.BuildConfig.MAPS_API_KEY
 import com.omanshuaman.tournamentsports.models.LocationModel
 import com.omanshuaman.tournamentsports.models.Upload
 import java.util.*
 
-@Suppress("DEPRECATION")
 
-
-class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
-    private var uploadBtn: FloatingActionButton? = null
+
+    //widgets
+    private var uploadBtn: Button? = null
+    private var showAllBtn: Button? = null
     private var imageView: ImageView? = null
     private var progressBar: ProgressBar? = null
-    private var mtournamentsportsname: EditText? = null
-    private var mPrizeMoney: EditText? = null
-    private var mEntryFee: EditText? = null
-    private var progressDialog: ProgressDialog? = null
-    private var mbtnPicklocation: Button? = null
+    private var mEditTextFileName: EditText? = null
+    private var btnPicklocation: Button? = null
     private var tvMylocation: TextView? = null
     private val PLACE_PICKER_REQUEST2 = 999
-    private var spinner: Spinner? = null
-    private var item: String? = null
-    private var planets = arrayOf("Choose Sports", "Football", "Cricket", "Athletics", "Badminton")
-    private var textView: TextView? = null
+
     private var latitude: String? = null
     private var longitude: String? = null
-    private var geocoder: Geocoder? = null
-    private var addresses: List<Address>? = null
+    var geocoder: Geocoder? = null
+    var addresses: List<Address>? = null
+
     private val userid = FirebaseAuth.getInstance().currentUser!!.uid
-    private val databaseReference = FirebaseDatabase.getInstance().getReference("Tournament")
+
+    //vars
+    private val databaseReference = FirebaseDatabase.getInstance().reference
     private val storageReference =
         FirebaseStorage.getInstance().reference.child("Photos").child(userid)
     private var imageUri: Uri? = null
@@ -62,23 +57,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_main)
 
         uploadBtn = findViewById(R.id.upload_btn)
+        showAllBtn = findViewById(R.id.showall_btn)
         progressBar = findViewById(R.id.progressBar)
         imageView = findViewById(R.id.imageView)
-        mtournamentsportsname = findViewById(R.id.tournament_name)
-        mbtnPicklocation = findViewById(R.id.BtnPickLocation)
-        textView = findViewById(R.id.select_sports)
-        spinner = findViewById(R.id.spinner)
-        mEntryFee = findViewById(R.id.entry_fee)
-        mPrizeMoney = findViewById(R.id.prize_money)
-        spinner!!.onItemSelectedListener = this
+        mEditTextFileName = findViewById(R.id.Name)
+        btnPicklocation = findViewById(R.id.BtnPickLocation)
+        tvMylocation = findViewById(R.id.MyLocation)
 
-        val spinnerArrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            planets
-        )
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner!!.adapter = spinnerArrayAdapter
         geocoder = Geocoder(this, Locale.getDefault())
 
         progressBar!!.visibility = View.INVISIBLE
@@ -91,32 +76,29 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             startActivityForResult(galleryIntent, 2)
         }
 
-        mbtnPicklocation!!.setOnClickListener {
+        btnPicklocation!!.setOnClickListener {
+
             openPlacePicker()
+
         }
 
         uploadBtn!!.setOnClickListener {
             if (imageUri != null) {
-                uploadToFirebase(imageUri!!, item!!)
-                val intent = Intent(this, GroupCreateActivity::class.java)
-                startActivity(intent)
+                uploadToFirebase(imageUri!!)
             } else {
                 Toast.makeText(this@MainActivity, "Please Select Image", Toast.LENGTH_SHORT).show()
             }
         }
-
+        showAllBtn!!.setOnClickListener {
+            val intent = Intent(this, GroupCreateActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun openPlacePicker() {
-
-        val ai: ApplicationInfo = applicationContext.packageManager
-            .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
-        val value = ai.metaData["com.google.android.geo.API_KEY"]
-        val key = value.toString()
-
-        val locationPickerIntent = LocationPickerActivity.Builder()
+       val locationPickerIntent = LocationPickerActivity.Builder()
             .withLocation(41.4036299, 2.1743558)
-            .withGeolocApiKey(key)
+            .withGeolocApiKey(MAPS_API_KEY)
             .withSearchZone("es_ES")
             .withSearchZone(
                 SearchZoneRect(
@@ -131,15 +113,17 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             .withZipCodeHidden()
             .withSatelliteViewHidden()
             //.withGooglePlacesEnabled()
-            .withGooglePlacesApiKey(key)
+            .withGooglePlacesApiKey(MAPS_API_KEY)
             .withGoogleTimeZoneEnabled()
             .withVoiceSearchHidden()
             .withUnnamedRoadHidden()
-            //   .withMapStyle()
+         //   .withMapStyle()
             // .withSearchBarHidden()
             .build(applicationContext)
 
+
         startActivityForResult(locationPickerIntent, PLACE_PICKER_REQUEST2)
+//
 
 //        val intent = PlacePicker.IntentBuilder()
 //            .setLatLong(
@@ -175,7 +159,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
@@ -192,12 +175,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     Log.d("LONGITUDE****", longitude.toString())
 
                     addresses =
-                        geocoder?.getFromLocation(
-                            latitude!!.toDouble(),
-                            longitude!!.toDouble(),
-                            1
-                        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                        geocoder?.getFromLocation(latitude!!.toDouble(), longitude!!.toDouble(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     Log.d("address****", addresses.toString())
+
 
                     val sb = StringBuilder()
                     sb.append("LATITUDE:").append(latitude).append("\n").append("LONGITUDE: ")
@@ -218,47 +198,36 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //            }
     }
 
-    private fun uploadToFirebase(uri: Uri, item: String) {
-        progressDialog = ProgressDialog(this)
-        progressDialog!!.setMessage("Uploading")
-
+    private fun uploadToFirebase(uri: Uri) {
         val fileRef =
             storageReference.child(
                 System.currentTimeMillis()
                     .toString() + "." + getFileExtension(uri)
             )
-        val gTimestamp = "" + System.currentTimeMillis()
-        progressDialog!!.show()
+        val g_timestamp = "" + System.currentTimeMillis()
 
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener { uri1: Uri ->
-                if (item == "Choose planets") {
-                    Toast.makeText(this, "pla", Toast.LENGTH_SHORT).show()
-                } else {
-                    val model = Upload(
-                        gTimestamp,
-                        mtournamentsportsname!!.text.toString(),
-                        uri1.toString(),
-                        longitude,
-                        latitude, item, mEntryFee?.text.toString(), mPrizeMoney?.text.toString(),userid
-                    )
-                    val locationModel = LocationModel(longitude, latitude)
-                    val modelId = databaseReference.push().key
+                val model = Upload(
+                    g_timestamp,
+                    mEditTextFileName!!.text.toString(),
+                    uri1.toString(),
+                    longitude,
+                    latitude
+                )
+                val locationModel = LocationModel(longitude, latitude)
+                val modelId = databaseReference.push().key
 
-                    databaseReference.child("Image").child(userid).child(modelId!!)
-                        .setValue(model)
-                    databaseReference.child("Just Photos").child(gTimestamp).setValue(model)
-                    databaseReference.child("Location").child(modelId).child("LatLng")
-                        .setValue(locationModel)
+                databaseReference.child("Image").child(userid).child(modelId!!)
+                    .setValue(model)
+                databaseReference.child("Just Photos").child(g_timestamp).setValue(model)
+                databaseReference.child("Location").child(modelId).child("LatLng")
+                    .setValue(locationModel)
 
-                    // progressBar!!.visibility = View.INVISIBLE
-                    Toast.makeText(this@MainActivity, "Uploaded Successfully", Toast.LENGTH_SHORT)
-                        .show()
-                    progressDialog!!.dismiss()
-
-                }
+                progressBar!!.visibility = View.INVISIBLE
+                Toast.makeText(this@MainActivity, "Uploaded Successfully", Toast.LENGTH_SHORT)
+                    .show()
             }
-
         }.addOnProgressListener { progressBar!!.visibility = View.VISIBLE }.addOnFailureListener {
             progressBar!!.visibility = View.INVISIBLE
             Toast.makeText(this@MainActivity, "Uploading Failed !!", Toast.LENGTH_SHORT).show()
@@ -270,18 +239,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val mime = MimeTypeMap.getSingleton()
         return mime.getExtensionFromMimeType(cr.getType(mUri))
     }
-
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        item = spinner?.selectedItem.toString()
-        textView?.text = item
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
     }
 }

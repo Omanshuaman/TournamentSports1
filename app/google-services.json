@@ -30,9 +30,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyBQFyDVezCU5J2fqyq0HL7tvgWkfe2_PVQ"
-        },
-        {
-          "current_key": "AIzaSyArxpS9qX-ttu90gBFXcL76j5uuEWEJImY"
         }
       ],
       "services": {
@@ -55,19 +52,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "319310297783-kbkefdv0ri7ffess1pmihgpd03dgu0uq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.omanshuaman.tournamentsports",
-            "certificate_hash": "c7ac879b312baacae8714dd127001ef11d731c49"
-          }
-        },
-        {
           "client_id": "319310297783-qcjpivhjlegc4vhdrp1q157klcodshji.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.omanshuaman.tournamentsports",
-            "certificate_hash": "3a9a62dc3339b4ff85947c8de67db02130896e67"
+            "certificate_hash": "c7ac879b312baacae8714dd127001ef11d731c49"
           }
         },
         {
@@ -78,9 +67,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyBQFyDVezCU5J2fqyq0HL7tvgWkfe2_PVQ"
-        },
-        {
-          "current_key": "AIzaSyArxpS9qX-ttu90gBFXcL76j5uuEWEJImY"
         }
       ],
       "services": {

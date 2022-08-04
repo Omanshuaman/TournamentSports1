@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapFragment">
+    android:orientation="vertical">
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
@@ -23,17 +23,5 @@
         android:padding="8dp"
         android:text="Organize"
         android:textColor="#ffffff" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:clipToPadding="false"
-        tools:listitem="@layout/place_layout" />
 
 </RelativeLayout>

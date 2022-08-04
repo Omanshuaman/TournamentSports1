@@ -31,10 +31,8 @@ class AdapterCard(context: Context, uploads: List<Upload?>?) :
         //inflate layout row_post.xml
         val view: View = LayoutInflater.from(mContext).inflate(R.layout.place_layout, parent, false)
 
-        view.layoutParams = ViewGroup.LayoutParams(
-            (parent.width * 0.90).toInt(),
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
+   view.layoutParams = ViewGroup.LayoutParams((parent.width * 0.90).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
+
 
         return MyHolder(view)
     }
@@ -45,7 +43,7 @@ class AdapterCard(context: Context, uploads: List<Upload?>?) :
         val model = mUploads[position]
         val id = model?.Id
 
-        val name: String? = mUploads[position]?.tournamentName
+        val name: String? = mUploads[position]?.name
 
         //set data
         holder.name.text = name

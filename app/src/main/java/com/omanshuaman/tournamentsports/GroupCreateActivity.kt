@@ -47,8 +47,8 @@ class GroupCreateActivity : AppCompatActivity() {
 
         //init UI views
         groupIconIv = findViewById(R.id.groupIconIv)
-        groupTitleEt = findViewById(R.id.entry_fee)
-        groupDescriptionEt = findViewById(R.id.prize_money)
+        groupTitleEt = findViewById(R.id.groupTitleEt)
+        groupDescriptionEt = findViewById(R.id.groupDescriptionEt)
         createGroupBtn = findViewById(R.id.createGroupBtn)
 
         //init permission arrays
@@ -135,7 +135,7 @@ class GroupCreateActivity : AppCompatActivity() {
         hashMap["createdBy"] = "" + firebaseAuth!!.uid
 
         //create group
-        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Groups")
         ref.child(g_timestamp).setValue(hashMap)
             .addOnSuccessListener {
                 //created successfully
@@ -145,7 +145,7 @@ class GroupCreateActivity : AppCompatActivity() {
                 hashMap1["uid"] = firebaseAuth!!.uid
                 hashMap1["role"] = "creator" //roles are creator, admin, participant
                 hashMap1["timestamp"] = g_timestamp
-                val ref1 = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+                val ref1 = FirebaseDatabase.getInstance().getReference("Groups")
                 ref1.child(g_timestamp).child("Participants").child(firebaseAuth!!.uid!!)
                     .setValue(hashMap1)
                     .addOnSuccessListener { //participant added
@@ -291,7 +291,6 @@ class GroupCreateActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         //handle image pick result
         if (resultCode == RESULT_OK) {

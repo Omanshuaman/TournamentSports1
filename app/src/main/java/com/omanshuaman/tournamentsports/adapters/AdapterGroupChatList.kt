@@ -70,7 +70,7 @@ class AdapterGroupChatList(
 
     private fun loadLastMessage(model: ModelGroupChatList, holder: HolderGroupChatList) {
         //get last message from group
-        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Groups")
         ref.child(model.groupId!!).child("Messages")
             .limitToLast(1) //get last item(message) from that child
             .addValueEventListener(object : ValueEventListener {

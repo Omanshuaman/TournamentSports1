@@ -20,6 +20,8 @@ import com.omanshuaman.tournamentsports.R
 import com.squareup.picasso.Picasso
 import java.util.*
 
+
+
 class AdapterAllGroupChatList(
     context: Context,
     groupChatLists: ArrayList<AllModelGroupChatList?>,
@@ -73,7 +75,7 @@ class AdapterAllGroupChatList(
             /*Check if user already added or not
              * If added: show remove-participant/make-admin/remove-admin option (Admin will not able to change role of creator)
              * If not added, show add participant option*/
-            val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+            val ref = FirebaseDatabase.getInstance().getReference("Groups")
             ref.child(groupId!!).child("Participants")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -107,7 +109,7 @@ class AdapterAllGroupChatList(
     }
 
     private fun grouprole(groupId: String) {
-        val ref1 = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+        val ref1 = FirebaseDatabase.getInstance().getReference("Groups")
         Objects.requireNonNull(firebaseAuth.uid).let {
             if (it != null) {
                 ref1.child(groupId).child("Participants").child(it)
@@ -133,7 +135,7 @@ class AdapterAllGroupChatList(
         hashMap["role"] = "participant"
         hashMap["timestamp"] = "" + timestamp
         //add that user in Groups>groupId>Participants
-        val ref = FirebaseDatabase.getInstance().getReference("Tournament").child("Groups")
+        val ref = FirebaseDatabase.getInstance().getReference("Groups")
         ref.child(groupId!!).child("Participants").child(user).setValue(hashMap)
             .addOnSuccessListener { //added successfully
                 Toast.makeText(context, "Added successfully...", Toast.LENGTH_SHORT).show()
